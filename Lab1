@@ -1,0 +1,46 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <stdio.h>
+using namespace std;
+
+// struct to keep personell data
+struct Person {
+    string social;
+    string firstName;
+    string lastName;
+    string email;
+};
+
+void readIn(ifstream& p, vector<Person>& v);
+
+int main()
+{
+    ifstream people;
+    vector<Person> v;
+    people.open("C:\\app\\persons.txt");
+    if (people.fail() || !people.is_open()) {
+        cout << "im jared, im 19, and i never learedn how to read" << endl;
+        exit(1);
+    }
+
+    readIn(people, v);
+
+    //printf();
+   
+    system("pause");
+    return 0;
+}
+
+void readIn(ifstream& p, vector<Person>& v) 
+{
+    //vector<Person> v;
+    Person cur;
+    int i = 0;
+
+    while (p >> cur.social >> cur.firstName >> cur.lastName >> cur.email) {
+        v[i] = cur;
+        i++;
+        v.push_back(cur);
+    }
+}
